@@ -31,6 +31,16 @@ export async function getStaticProps({ params }) {
     "fields.slug": params.slug,
   });
 
+  // cek jika tidak ada item
+  if (!items.length) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false, //Jaga jika akan ada id yang baru
+      },
+    };
+  }
+
   return {
     props: {
       data: items[0],
